@@ -4,14 +4,21 @@ import Canvas from './Components/Canvas.js'
 class App extends Component {
   
   state = {
-    clickedColors : []
+    clickedColor: null
   }
   
+  clickImageHandler = (color) => {
+    //console.log(color);
+    this.setState({clickedColor: color});
+  }
+
   render () {
 
     return (
       <div className="App">
-      <Canvas />
+      <Canvas onClick={this.clickImageHandler}/>
+
+      <div className="swatch" style={{backgroundColor: this.state.clickedColor}}>  {this.state.clickedColor}</div>
     </div>
   );
 }

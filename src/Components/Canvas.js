@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 
 class Canvas extends Component {
-  constructor ( props) {
-    super ( props );
-  }
-
+  
   canvasRef = React.createRef();
 
 
@@ -12,7 +9,6 @@ class Canvas extends Component {
     var canvas = this.canvasRef.current;
     
     canvas.addEventListener('click', (e) => {
-
       const xCoord = e.offsetX;
       const yCoord = e.offsetY;
       const canvasWidth = 600;
@@ -24,16 +20,11 @@ class Canvas extends Component {
 
       const colorIndices = getColorIndicesForCoord(xCoord, yCoord, canvasWidth);
 
-      const [redIndex, greenIndex, blueIndex, alphaIndex] = colorIndices;
-
       const colorValues = colorIndices.map(el => myImageData.data[el]);
 
-      const colorpatch = document.getElementById('colorpatch');
-
       const color = `rgba(${colorValues[0]}, ${colorValues[1]}, ${colorValues[2]}, ${colorValues[3]})`;
-      colorpatch.style.backgroundColor = color;
-      colorpatch.innerHTML = color;
-      console.log(colorValues);
+
+      this.props.onClick(color);
     });
 
 
