@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import Canvas from './Components/Canvas.js'
+import Canvas from './Components/Canvas.js';
+import SwatchList from './Components/SwatchList.js';
+
+
 class App extends Component {
   
   state = {
-    clickedColor: null
+    clickedColor: 'lightgrey',
+    clickedColorsArray: ['white'],
   }
   
   clickImageHandler = (color) => {
@@ -16,9 +20,10 @@ class App extends Component {
 
     return (
       <div className="App">
+      {/* <div className="App-header"> colorSwatch by @pon-y</div> */}
       <Canvas onClick={this.clickImageHandler}/>
-
-      <div className="swatch" style={{backgroundColor: this.state.clickedColor}}>  {this.state.clickedColor}</div>
+      <SwatchList clickedColor={this.state.clickedColor} />
+      
     </div>
   );
 }

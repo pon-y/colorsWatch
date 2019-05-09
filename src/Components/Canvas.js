@@ -31,15 +31,14 @@ class Canvas extends Component {
     if (canvas.getContext) {
      var ctx = canvas.getContext('2d');
 
-      //bakarinaa
       var img = new Image();
       img.addEventListener('load', function () {
-        ctx.drawImage( img, 0,0)
+        // ctx.drawImage( img, 0,0)
+        
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
       })
       img.crossOrigin = "anonymous"
-      img.src = 'https://i1.wp.com/thatnovelcorner.com/wp2/wp-content/uploads/2019/05/102251.jpeg?w=350&ssl=1';
-
-      
+      img.src = 'https://images.unsplash.com/photo-1464820453369-31d2c0b651af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2900&q=80';      
     }
 }
 
@@ -51,7 +50,15 @@ componentDidMount() {
 render () {
 
   return (
-    <canvas ref={this.canvasRef} id="userImage" width="400" height="400"></canvas>
+    <div className="canvasContainer">
+      <canvas ref={this.canvasRef} id="userImage" width="400" height="400"></canvas>
+      <div className="canvasHelpText"> Click any point on the above image to get started.
+      
+      <p>
+        Photo by Sharon Pittaway on Unsplash
+      </p>
+      </div>
+    </div>
     )
   }
 }
