@@ -33,12 +33,11 @@ class Canvas extends Component {
 
       var img = new Image();
       img.addEventListener('load', function () {
-        // ctx.drawImage( img, 0,0)
         
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
       })
       img.crossOrigin = "anonymous"
-      img.src = 'https://images.unsplash.com/photo-1464820453369-31d2c0b651af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2900&q=80';      
+       img.src = 'https://images.unsplash.com/photo-1464820453369-31d2c0b651af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2900&q=80';      
     }
 }
 
@@ -46,19 +45,46 @@ componentDidMount() {
   this.draw();
 }
 
+drawUpdatedImage = () =>  {
+  if(this.canvasRef.current){
+    let ref = this.canvasRef.current
+    let context = ref.getContext('2d');
 
+    let imageObj = new Image();
+    imageObj.addEventListener('load', function () {
+    context.drawImage(imageObj, 0, 0, ref.width, ref.height);
+    })
+
+    imageObj.crossOrigin = "anonymous"
+    imageObj.src = this.props.urlValue;
+  }
+}
+
+handleChange = (e) => {
+  this.setState({urlValue: e.target.value});
+}
 render () {
-
+  this.drawUpdatedImage();
   return (
     <div className="canvasContainer">
       <canvas ref={this.canvasRef} id="userImage" width="400" height="400"></canvas>
-      <div className="canvasHelpText"> Click any point on the above image to get started.
-      
-      <p>
+      <p id="photoCredit">
         Photo by Sharon Pittaway on Unsplash
       </p>
+      <div className="canvasHelpText"> Click the image above to add colors to the list
+      
       </div>
+
+    <div>
+      <form>
+         <label>
+          Upload an image:
+           <input type="text" name="url" value={this.props.urlValue} onChange={this.props.handleChange}/>
+        </label>
+        </form>
+      <button onClick={()=>this.props.updateImage()}> Apply </button>
     </div>
+  </div>
     )
   }
 }
