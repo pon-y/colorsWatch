@@ -6,8 +6,8 @@ import { faSquare, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 //container for list of swatches
 function SwatchList ( props ) {
-  const { clickedColorsArray } = props;
-  let swatchList = clickedColorsArray.map(el => <ListItem clickedColor={el} />);
+  const { clickedColorsArray, deleteItem } = props;
+  let swatchList = clickedColorsArray.map((el, idx) => <ListItem clickedColor={el} key={`${el},${idx}`} idx={idx} deleteItem={deleteItem}/>);
 
   return (
     <div className="swatchList">
@@ -28,17 +28,16 @@ class ListItem extends Component {
   // }
   render() {
 
-    const {clickedColor} = this.props;
-
+    const {clickedColor, deleteItem, idx} = this.props;
     if(this.state.expanded === false) {
 
       return (
-        <div>
-          <div className="swatch" >
+        <div value={idx}>
+          <div className="swatch"  >
             <div> <FontAwesomeIcon icon={faSquare} size="4x" color={clickedColor} style={{paddingRight: '15px'}}/></div>
             {/* <span onClick={this.toggleExpand}> Expand </span> */}
             <span> Color Code:  {clickedColor} </span> 
-            <FontAwesomeIcon icon={faTimesCircle} size="1x" color={'grey'} />
+            <FontAwesomeIcon icon={faTimesCircle} onClick={()=>deleteItem(idx)} size="1x" color={'grey'} />
           </div>
         <div className="swatchDivider"></div>
 
