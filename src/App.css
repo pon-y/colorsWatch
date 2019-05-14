@@ -3,10 +3,10 @@
   display: flex;
   flex-direction: column;
   align-content: center;
-  justify-content: flex-start;
-  padding: 10%;
-  font-family: 'EB Garamond', 'Quicksand', 'Nunito', sans-serif;
-
+  /* justify-content: center; */
+  font-family: 'Poiret One', cursive;
+  min-height: 100vh;
+  min-width: 100vw;
 }
 .header {
   background-color: rgba(230, 241, 244, 255);
@@ -15,10 +15,11 @@
 .main {
   text-align: center;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-content: center;
-  justify-content: flex-start;
-  padding: 10%;
+  /* justify-content: center; */
+  height: 100vh;
+  width: 100vw;
 }
 
 .App-header {
@@ -32,22 +33,28 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
 canvas {
-  border: 1px solid #A8A8A8;
+  /* border: 1px solid #A8A8A8; */
 }
 
+.containerBody {
+  /* border: 1px dotted purple; */
+  display: flex;
+  flex-direction: row;
+  padding: 5%;
+  overflow: hidden;
+  max-height: 60vh;
+}
 .canvasContainer {
+  /* border: 1px solid salmon; */
   display: flex;
   flex-direction: column;
-  height: inherit;
+  height: 60vh;
 }
 
 .canvasHelpText {
-  padding: 3% 0;
+  /* padding: 3% 0; */
 }
 
 .swatchList {
@@ -56,20 +63,42 @@ canvas {
   width: 100%;
   display: flex;
   flex-direction: column;
+  overflow: scroll;
+  
 }
 .swatch {
-  /* border: 1px dotted red; */
   height: 100%;
-  width: 90%;
+  /* width: 90%; */
   display: flex;
   flex-direction: row;
   margin-left: 5%;
-  border-bottom: 1px dotted #282c34;
+  /* border-bottom: 1px dotted #282c34; */
   justify-content: space-between;
   align-content: center;
   overflow: scroll;
 }
 
+input[type=text] {
+  padding: 5px; 
+  width: 400px;
+  border: 0px solid white;
+  border-bottom: 1px dotted #282c34;
+  margin: 5px;
+}
+
+.delete {
+  align-content: flex-end;
+  justify-content: end;
+}
+
+
+.bigSwatch {
+  /* height: 10vh; */
+  width: 100vw;
+  font-size: calc(10px + 2vmin);
+  color: black;
+  padding: 3%;
+}
 /* 
 font-family: 'Nunito', sans-serif;
 font-family: 'Quicksand', sans-serif;
@@ -77,3 +106,6 @@ font-family: 'EB Garamond', serif;
 font-family: 'Maven Pro', sans-serif;
 font-family: 'Cormorant Garamond', serif;
 font-family: 'Quattrocento Sans', sans-serif; */
+/* font-family: 'Dancing Script', cursive;
+font-family: 'Courgette', cursive;
+font-family: 'Poiret One', cursive; */

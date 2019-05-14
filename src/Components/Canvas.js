@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SwatchList from './SwatchList.js';
 
 class Canvas extends Component {
   
@@ -22,7 +23,7 @@ class Canvas extends Component {
 
       const colorValues = colorIndices.map(el => myImageData.data[el]);
 
-      const color = `rgba(${colorValues[0]}, ${colorValues[1]}, ${colorValues[2]}, ${colorValues[3]})`;
+      const color = [`rgba(${colorValues[0]}, ${colorValues[1]}, ${colorValues[2]}, ${colorValues[3]})`, this.props.urlValue];
 
       this.props.onClick(color);
     });
@@ -66,25 +67,24 @@ handleChange = (e) => {
 render () {
   this.drawUpdatedImage();
   return (
-    <div className="canvasContainer">
-      <canvas ref={this.canvasRef} id="userImage" width="400" height="400"></canvas>
-      <p id="photoCredit">
-        Photo by Sharon Pittaway on Unsplash
-      </p>
-      <div className="canvasHelpText"> Click the image above to add colors to the list
-      
-      </div>
 
-    <div>
-      <form>
-         <label>
-          Upload an image:
-           <input type="text" name="url" value={this.props.urlValue} onChange={this.props.handleChange}/>
-        </label>
-        </form>
-      <button onClick={()=>this.props.updateImage()}> Apply </button>
+    <div className="containerBody">
+
+      <div className="canvasContainer">
+        <canvas ref={this.canvasRef} id="userImage" width="400" height="400"></canvas>
+
+        <div>
+        <form>
+          <label>
+            Upload an image:
+            <input type="text" name="url" value={this.props.urlValue} onChange={this.props.handleChange}/>
+          </label>
+          </form>
+         </div>
+        </div>
+
+        <SwatchList  clickedColorsArray={this.props.clickedColorsArray} deleteItem={this.props.deleteItem} bigColor={this.props.bigColor}/>
     </div>
-  </div>
     )
   }
 }
