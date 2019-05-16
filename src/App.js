@@ -66,22 +66,22 @@ export default App;
 function Header ( props ) {
   
   const { clickedColorsArray, currentColor } = props;
-  let directionText = 'Click anywhere on the image to begin';
+  let directionText = <div>Click anywhere on the image to begin</div>
   if(clickedColorsArray.length > 0) {
-    directionText = null;
+    directionText = <div style={{opacity: 0}}>Click anywhere on the image to begin</div>;
   } 
   return (
     <div className="bigSwatch" style={{backgroundColor: props.currentColor}}> 
-      <div style={{color: ~props.currentColor}}>
-        colorSwatch
+      <div className="bigSwatch-label-main">
+        illuminate
       </div>
-      <div>
-       <div style={{fontSize: '15px'}}> 
-        {directionText};
+      <div className="bigSwatch-label-sub">
+       <div>
+         <a href="https://github.com/pon-y/">github.com/pon-y</a>
        </div>
-       <div style={{fontSize: '15px'}}>
-         github.com/pon-y
-       </div>
+       {/* <div>  */}
+        {/* {directionText} */}
+       {/* </div> */}
       </div>
     </div>
   )
