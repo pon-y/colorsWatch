@@ -72,12 +72,11 @@ render () {
 
       <div className="canvasContainer">
         <canvas ref={this.canvasRef} id="userImage" width="400" height="400"></canvas>
-
         <div>
         <form>
           <label>
             Upload an image:
-            <input type="text" name="url" value={this.props.urlValue} onChange={this.props.handleChange}/>
+            <input id="canvasURL" type="text" name="url" value={this.props.urlValue} onChange={this.props.handleChange}/>
           </label>
           </form>
          </div>
