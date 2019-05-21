@@ -25,7 +25,7 @@ class Canvas extends Component {
 
       const color = [`rgba(${colorValues[0]}, ${colorValues[1]}, ${colorValues[2]}, ${colorValues[3]})`, this.props.urlValue];
 
-      this.props.onClick(color);
+      this.props.onclick(color);
     });
 
 
@@ -47,6 +47,7 @@ componentDidMount() {
 }
 
 drawUpdatedImage = () =>  {
+  const { urlValue} = this.props;
   if(this.canvasRef.current){
     let ref = this.canvasRef.current
     let context = ref.getContext('2d');
@@ -57,7 +58,7 @@ drawUpdatedImage = () =>  {
     })
 
     imageObj.crossOrigin = "anonymous"
-    imageObj.src = this.props.urlValue;
+    imageObj.src = urlValue;
   }
 }
 
@@ -65,6 +66,7 @@ handleChange = (e) => {
   this.setState({urlValue: e.target.value});
 }
 render () {
+  const { clickedColorsArray, deleteItem, bigColor, urlValue, handleChange } = this.props;
   this.drawUpdatedImage();
   return (
 
@@ -76,13 +78,13 @@ render () {
         <form>
           <label>
             Upload an image:
-            <input id="canvasURL" type="text" name="url" value={this.props.urlValue} onChange={this.props.handleChange}/>
+            <input id="canvasInput" type="text" name="url" value={urlValue} onChange={handleChange}/>
           </label>
           </form>
          </div>
         </div>
 
-        <SwatchList  clickedColorsArray={this.props.clickedColorsArray} deleteItem={this.props.deleteItem} bigColor={this.props.bigColor}/>
+        <SwatchList  clickedColorsArray={clickedColorsArray} deleteItem={deleteItem} bigColor={bigColor}/>
     </div>
     )
   }

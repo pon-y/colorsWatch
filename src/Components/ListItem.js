@@ -17,11 +17,11 @@ class ListItem extends Component {
         <div value={idx}>
           <div className="swatch"  >
             <div className="swatch-square" onClick={() => bigColor(clickedColor)}> <FontAwesomeIcon icon={faSquare} size="4x" color={clickedColor} style={{paddingRight: '15px'}}/></div>
-            <div>
+            <div className="swatch-text">
               <span> Color Code:  {clickedColor} </span> 
               {/* <div> <u>Click To Load Original Image </u></div> */}
             </div>
-              <span className="delete" onClick={()=>deleteItem(idx)}  color={'grey'}> X </span>
+              <span className="swatch-delete" onClick={()=>deleteItem(idx)}  color={'grey'}> X </span>
             <div>
 
             </div>
